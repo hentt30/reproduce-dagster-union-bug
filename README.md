@@ -49,18 +49,3 @@ modified_data_by_config_key[config_key] = {
 - Dagster: 1.11.8
 - Pydantic: 2.11.7
 
-## Workaround
-
-Use Dagster's `Union` type instead of Python's built-in `Union`:
-
-```python
-# Instead of:
-union_field: t.Union[SimpleConfigA, SimpleConfigB] = Field(...)
-
-# Use:
-union_field: dg.Union[SimpleConfigA, SimpleConfigB] = Field(...)
-```
-
-## Stack Trace
-
-The error occurs in Dagster's `_config/pythonic_config/config.py` around line 224 during the `__init__` method when processing discriminated union fields.
